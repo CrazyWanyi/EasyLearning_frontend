@@ -1,0 +1,18 @@
+div .main {
+    margin: 50px 0 0 0;
+}
+
+.mint-header {
+    padding: 24px 10px;
+    background-color: #4ECA7A;
+    font-size: 16px;
+}
+
+.btn {
+    display: block;
+    margin: 0 auto;
+    color: #ffffff;
+    width: 80%;
+    font-size: 16px;
+    background: #4ECA7A;
+}
