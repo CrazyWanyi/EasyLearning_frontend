@@ -3,15 +3,15 @@ const axios = require('axios');
 
 const router = express.Router();
 
-router.get('/login', (req, res) => {
-    res.render('user/userLogin.html')
+router.get('/register', (req, res) => {
+    res.render('user/userRegister.html')
 });
 
-router.post('/login', async (request, response) => {
+router.post('/register', async (request, response) => {
     let body = request.body;
     await axios({
         method: 'POST',
-        url: "http://localhost:8080/api/user/login",
+        url: "http://localhost:8080/api/user/register",
         data: body
     }).then((res) => {
         let data = res.data;

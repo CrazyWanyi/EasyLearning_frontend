@@ -1,0 +1,55 @@
+.icon {
+    width: 20px;
+    margin-right: 16px;
+    display: block
+}
+
+.avatar {
+    width: 60px;
+    height: 60px;
+    margin-right: 16px;
+    display: block;
+    border-radius: 5px;
+}
+
+.weui-cells {
+    margin-top: 0;
+}
+
+.link {
+    font-size: 14px;
+}
+
+.username {
+    margin: 0 0 8px 0;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.type {
+    border-radius: 2px;
+    font-size: 10px;
+    color: #FFFFFF;
+    font-weight: normal;
+    position: relative;
+    top: -4px;
+    left: 8px;
+    padding: 1px;
+}
+
+.student {
+    background: #387eff;
+}
+
+.teacher {
+    background: #ff433d;
+}
+
+.email {
+    color: #777777;
+    font-size: 14px;
+    width: 140px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

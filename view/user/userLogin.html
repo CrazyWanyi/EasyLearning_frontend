@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4ECA7A">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/static/css/mini-ui.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <script src="/static/script/vue.js"></script>
+    <script src="/static/script/mint-ui.js"></script>
+    <script src="/static/script/axios.js"></script>
+    <title>用户登录</title>
+</head>
+
+<body>
+<div id="app">
+    <mt-header fixed title="用户登录">
+        <mt-button slot="right" onclick="window.location.href='/register'">注册</mt-button>
+    </mt-header>
+    <div class="main">
+        <mt-field label="邮箱" placeholder="请输入邮箱" type="email" v-model="email"></mt-field>
+        <mt-field label="密码" placeholder="请输入密码" type="password" v-model="password"></mt-field>
+        <mt-button class="btn" type="default" @click="login">登录</mt-button>
+    </div>
+</div>
+<script>
+    const Indicator = MINT.Indicator;
+    const Toast = MINT.Toast;
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            email: '',
+            password: '',
+        },
+        methods: {
+            login: function () {
+                if (this.email === "" || this.password === "") {
+                    this.showToast("请完善输入", 'bottom', 1500);
+                    return;
+                }
+                this.showIndicatorWithText("登录中...");
+                axios.post('/login', {
+                    email: this.email,
+                    password: this.password
+                }).then((res) => {
+                    this.closeIndicator();
+                    console.log(res.data);
+                    switch (res.data.status) {
+                        case 200:
+                            this.showToast("欢迎您，" + res.data.data.username, 'bottom', 1500);
+                            break;
+                        case 500:
+                            this.showToast("服务器错误，请稍微重试", 'bottom', 1500);
+                            break;
+                        default:
+                            this.showToast("邮箱或密码错误", 'bottom', 1500);
+                            break;
+                    }
+                }).catch((err) => {
+                    this.closeIndicator();
+                    console.log(err);
+                })
+            },
+            showIndicatorWithText: function (text) {
+                Indicator.open({
+                    text: text,
+                    spinnerType: 'fading-circle'
+                });
+            },
+            closeIndicator: function () {
+                Indicator.close();
+            },
+            showToast: function (message, position, duration) {
+                Toast({
+                    message: message,
+                    position: position,
+                    duration: duration
+                });
+            }
+        },
+    })
+</script>
+</body>
+
+</html>

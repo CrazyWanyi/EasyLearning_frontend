@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4ECA7A">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/static/css/mini-ui.css">
+    <link rel="stylesheet" href="/static/css/weui_2.1.3.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/home.css">
+    <link rel="stylesheet" href="/static/css/me.css">
+    <script src="/static/script/vue.js"></script>
+    <script src="/static/script/mint-ui.js"></script>
+    <script src="/static/script/weui_1.2.1.js"></script>
+    <script src="/static/script/axios.js"></script>
+    <title>主页面</title>
+    <style>
+        .mint-tabbar > .mint-tab-item.is-selected {
+            background-color: #eaeaea;
+            color: #4ECA7A;
+        }
+    </style>
+</head>
+<body style="background: #f8f8f8;margin: 0 auto">
+<div id="app">
+    <mt-header fixed :title="selected"></mt-header>
+    <div class="main">
+        <mt-tab-container v-model="selected">
+            <mt-tab-container-item id="首页">
+                <div class="weui-cell course_info">
+                    <div class="weui-cell__hd"
+                         style="position: relative;margin: 10px 20px 10px 20px;text-align: center">
+                        <img src="/static/image/teacher_avatar.png" style="width: 50px;" alt="">
+                        <p class="teacher_name">王宇老师</p>
+                    </div>
+                    <div class="weui-cell__bd" style="position: relative;">
+                        <p class="course_name">软件工程导论</p>
+                        <p class="course_introduction">软件工程是一门工程科学，研究软件开发，维护和软件管理。 本课程是计算机科学与技术专业指导教学计划中规定的教学链接的一部分。
+                            教学目的是介绍软件工程的基本原理和主要内容，并为学生进一步学习与软件工程有关的其他课程，如软件需求过程和软件分析与设计，软件项目管理和软件过程管理奠定坚实的基础。 </p>
+                    </div>
+                </div>
+                <div class="weui-grids">
+                    <a href="javascript:" class="weui-grid">
+                        <div class="weui-grid__icon">
+                            <img src="/static/image/icon_tabbar.png" alt="">
+                        </div>
+                        <p class="weui-grid__label">班级学生</p>
+                    </a>
+                    <a href="javascript:" class="weui-grid">
+                        <div class="weui-grid__icon">
+                            <img src="/static/image/icon_tabbar.png" alt="">
+                        </div>
+                        <p class="weui-grid__label">在线练习</p>
+                    </a>
+                    <a href="javascript:" class="weui-grid">
+                        <div class="weui-grid__icon">
+                            <img src="/static/image/icon_tabbar.png" alt="">
+                        </div>
+                        <p class="weui-grid__label">留言板</p>
+                    </a>
+                    <a href="javascript:" class="weui-grid">
+                        <div class="weui-grid__icon">
+                            <img src="/static/image/icon_tabbar.png" alt="">
+                        </div>
+                        <p class="weui-grid__label">成绩册</p>
+                    </a>
+                </div>
+            </mt-tab-container-item>
+            <mt-tab-container-item id="我的">
+                <div class="weui-cells" id="user">
+                    <a class="weui-cell weui-cell_access weui-cell_example" href="javascript:">
+                        <div class="weui-cell__hd">
+                            <img class="avatar" src="/static/image/avatar.png" alt="">
+                        </div>
+                        <div class="weui-cell__bd">
+                            <p class="username">蒋万艺<span
+                                    class="type student">学生</span>
+                            </p>
+                            <p class="email">jwy@163.com</p>
+                        </div>
+                        <div class="weui-cell__ft link">修改个人资料</div>
+                    </a>
+                </div>
+                <div class="weui-cells__title"></div>
+                <div class="weui-cells">
+                    <a class="weui-cell weui-cell_access weui-cell_example" href="javascript:openSwitchClassPage()">
+                        <div class="weui-cell__hd">
+                            <img class="icon" src="/static/image/default.png" alt="">
+                        </div>
+                        <div class="weui-cell__bd">
+                            <p>切换班级</p>
+                        </div>
+                        <div class="weui-cell__ft link">软件工程导论</div>
+                    </a>
+                    <a class="weui-cell weui-cell_access weui-cell_example" href="javascript:">
+                        <div class="weui-cell__hd">
+                            <img class="icon" src="/static/image/default.png" alt="">
+                        </div>
+                        <div class="weui-cell__bd">
+                            <p>系统公告</p>
+                        </div>
+                        <div class="weui-cell__ft"></div>
+                    </a>
+                </div>
+                <div class="weui-cells__title"></div>
+                <div class="weui-cells">
+                    <a class="weui-cell weui-cell_access weui-cell_example" href="javascript:">
+                        <div class="weui-cell__hd">
+                            <img class="icon" src="/static/image/default.png" alt="">
+                        </div>
+                        <div class="weui-cell__bd">
+                            <p>在线客服</p>
+                        </div>
+                        <div class="weui-cell__ft"></div>
+                    </a>
+                    <a class="weui-cell weui-cell_access weui-cell_example" href="javascript:">
+                        <div class="weui-cell__hd">
+                            <img class="icon" src="/static/image/default.png" alt="">
+                        </div>
+                        <div class="weui-cell__bd">
+                            <p>常见问题</p>
+                        </div>
+                        <div class="weui-cell__ft"></div>
+                    </a>
+                </div>
+            </mt-tab-container-item>
+        </mt-tab-container>
+    </div>
+    <mt-tabbar v-model="selected">
+        <mt-tab-item id="首页">
+            <img slot="icon" :src="home_icon" alt="">
+            首页
+        </mt-tab-item>
+        <mt-tab-item id="我的">
+            <img slot="icon" :src="me_icon" alt="">
+            我的
+        </mt-tab-item>
+    </mt-tabbar>
+</div>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            selected: "我的",
+            home_icon: "/static/image/home.png",
+            me_icon: "/static/image/me_active.png"
+        },
+        methods: {},
+        beforeMount() {
+            let front = window.location.search.split('&')[0].split('=')[1];
+            if (front === "user") {
+                this.selected = "我的";
+            } else {
+                this.selected = "首页";
+            }
+        },
+        watch: {
+            selected(val) {
+                if (val === "我的") {
+                    this.home_icon = "/static/image/home.png";
+                    this.me_icon = "/static/image/me_active.png";
+                } else {
+                    this.home_icon = "/static/image/home_active.png";
+                    this.me_icon = "/static/image/me.png";
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>
