@@ -1,5 +1,6 @@
 const express = require('express');
 const axios = require('axios');
+axios.defaults.withCredentials = true;
 
 const router = express.Router();
 
@@ -15,6 +16,7 @@ router.post('/login', async (request, response) => {
         data: body
     }).then((res) => {
         let data = res.data;
+        response.header(res.headers);
         response.status(200).json(data);
     }).catch((err) => {
         console.log(err.data);

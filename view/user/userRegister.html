@@ -68,6 +68,7 @@
                 });
                 let registerInfo = this.$data;
                 this.registerInfo = this.registerInfo === "学生" ? "student" : "teacher";
+                axios.defaults.withCredentials = true;
                 axios.post("/register", registerInfo)
                     .then((res) => {
                         Indicator.close();

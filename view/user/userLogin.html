@@ -41,6 +41,7 @@
                     return;
                 }
                 this.showIndicatorWithText("登录中...");
+                axios.defaults.withCredentials = true;
                 axios.post('/login', {
                     email: this.email,
                     password: this.password

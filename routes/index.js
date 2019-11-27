@@ -1,9 +1,9 @@
 const userLogin = require('./user/userLogin');
 const userRegister = require('./user/userRegister');
-const mainPage = require('./main/main');
+const userHome = require('./home');
 
 module.exports = (app) => {
     app.use(userLogin);
     app.use(userRegister);
-    app.use(mainPage);
+    app.use(userHome);
 };
