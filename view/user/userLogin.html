@@ -37,49 +37,53 @@
         methods: {
             login: function () {
                 if (this.email === "" || this.password === "") {
-                    this.showToast("请完善输入", 'bottom', 1500);
+                    Toast({
+                        message: "请完善输入",
+                        position: "bottom",
+                        duration: 1500
+                    });
                     return;
                 }
-                this.showIndicatorWithText("登录中...");
+                Indicator.open({
+                    text: "登录中...",
+                    spinnerType: 'fading-circle'
+                });
                 axios.defaults.withCredentials = true;
                 axios.post('/login', {
                     email: this.email,
                     password: this.password
                 }).then((res) => {
-                    this.closeIndicator();
+                    Indicator.close();
                     console.log(res.data);
                     switch (res.data.status) {
                         case 200:
-                            this.showToast("欢迎您，" + res.data.data.username, 'bottom', 1500);
+                            Toast({
+                                message: "欢迎您，" + res.data.data.username,
+                                position: "bottom",
+                                duration: 1500
+                            });
+                            window.location.href = "/";
                             break;
                         case 500:
-                            this.showToast("服务器错误，请稍微重试", 'bottom', 1500);
+                            Toast({
+                                message: "服务器错误，请稍微重试",
+                                position: "bottom",
+                                duration: 1500
+                            });
                             break;
                         default:
-                            this.showToast("邮箱或密码错误", 'bottom', 1500);
+                            Toast({
+                                message: "邮箱或密码错误",
+                                position: "bottom",
+                                duration: 1500
+                            });
                             break;
                     }
                 }).catch((err) => {
-                    this.closeIndicator();
+                    Indicator.close();
                     console.log(err);
                 })
             },
-            showIndicatorWithText: function (text) {
-                Indicator.open({
-                    text: text,
-                    spinnerType: 'fading-circle'
-                });
-            },
-            closeIndicator: function () {
-                Indicator.close();
-            },
-            showToast: function (message, position, duration) {
-                Toast({
-                    message: message,
-                    position: position,
-                    duration: duration
-                });
-            }
         },
     })
 </script>

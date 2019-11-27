@@ -75,17 +75,17 @@
                             <img class="avatar" src="/static/image/avatar.png" alt="">
                         </div>
                         <div class="weui-cell__bd">
-                            <p class="username">蒋万艺<span
-                                    class="type student">学生</span>
+                            <p class="username">{{user.username}}<span
+                                    class="type student">{{user.type}}</span>
                             </p>
-                            <p class="email">jwy@163.com</p>
+                            <p class="email">{{user.email}}</p>
                         </div>
                         <div class="weui-cell__ft link">修改个人资料</div>
                     </a>
                 </div>
                 <div class="weui-cells__title"></div>
                 <div class="weui-cells">
-                    <a class="weui-cell weui-cell_access weui-cell_example" href="javascript:openSwitchClassPage()">
+                    <a class="weui-cell weui-cell_access weui-cell_example" @click="switchClass">
                         <div class="weui-cell__hd">
                             <img class="icon" src="/static/image/default.png" alt="">
                         </div>
@@ -140,14 +140,18 @@
     </mt-tabbar>
 </div>
 <script>
-    new Vue({
+    const vm = new Vue({
         el: "#app",
         data: {
             selected: "我的",
             home_icon: "/static/image/home.png",
-            me_icon: "/static/image/me_active.png"
+            me_icon: "/static/image/me_active.png",
         },
-        methods: {},
+        methods: {
+            switchClass: function () {
+                alert("ss")
+            }
+        },
         beforeMount() {
             let front = window.location.search.split('&')[0].split('=')[1];
             if (front === "user") {

@@ -1,8 +1,6 @@
 const express = require('express');
 const axios = require('axios');
 
-axios.defaults.withCredentials = true;
-
 const router = express.Router();
 
 router.get('/', async (req, response) => {
@@ -11,9 +9,14 @@ router.get('/', async (req, response) => {
         url: "http://localhost:8080/api/user/home",
         headers: req.headers
     }).then((res) => {
-        response.header(res.headers);
-        console.log(res.data)
-        // res.render('home.html');
+        if (res.data.status === 401) {
+            response.redirect("/login");
+            return;
+        }
+        response.setHeader("Content-Type", "text/html;charset=utf-8");
+        response.render('home.html', {
+            user: res.data.data
+        });
     }).catch((err) => {
         console.log(err.data);
     })
