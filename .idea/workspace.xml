@@ -2,14 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8b928fed-f6cf-44b9-88f1-29efbd9a6794" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/routes/user/userSwitchClass.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/default.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/default.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/user/userJoinClass.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/user/userSwitchClass.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/user/userLogin.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/user/userLogin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/user/userRegister.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/user/userRegister.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/user/userLogin.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/user/userLogin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/user/userRegister.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/user/userRegister.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/user/userSwitchClass.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/user/userSwitchClass.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -102,7 +105,8 @@
       <workItem from="1574683533965" duration="5250000" />
       <workItem from="1574756771533" duration="1677000" />
       <workItem from="1574821581274" duration="535000" />
-      <workItem from="1574832607256" duration="10069000" />
+      <workItem from="1574832607256" duration="17082000" />
+      <workItem from="1574926967805" duration="6237000" />
     </task>
     <servers />
   </component>

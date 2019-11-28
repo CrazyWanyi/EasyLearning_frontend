@@ -69,25 +69,25 @@
                 let registerInfo = this.$data;
                 this.registerInfo = this.registerInfo === "学生" ? "student" : "teacher";
                 axios.defaults.withCredentials = true;
-                axios.post("/register", registerInfo)
+                axios.defaults.baseURL = "http://localhost:8080";
+                axios.post("/api/user/register", registerInfo)
                     .then((res) => {
                         Indicator.close();
-                        console.log(res.data);
-                        switch (res.data.status) {
-                            case 200:
-                                Toast({
-                                    message: "注册成功",
-                                    position: "bottom",
-                                    duration: 1500
-                                });
-                                return;
-                            default:
-                                Toast({
-                                    message: res.data.error,
-                                    position: "bottom",
-                                    duration: 1500
-                                });
-                                return;
+                        if (res.data.status === 200) {
+                            Toast({
+                                message: "注册成功",
+                                position: "bottom",
+                                duration: 1500
+                            });
+                            setTimeout(() => {
+                                window.location.href = "/login";
+                            }, 1500);
+                        } else {
+                            Toast({
+                                message: res.data.error,
+                                position: "bottom",
+                                duration: 1500
+                            });
                         }
                     })
             }

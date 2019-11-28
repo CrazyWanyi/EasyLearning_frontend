@@ -48,10 +48,15 @@
                     text: "登录中...",
                     spinnerType: 'fading-circle'
                 });
+                axios.defaults.baseURL = "http://localhost:8080";
                 axios.defaults.withCredentials = true;
-                axios.post('/login', {
-                    email: this.email,
-                    password: this.password
+                axios({
+                    method: 'POST',
+                    url: "/api/user/login",
+                    data: {
+                        email: this.email,
+                        password: this.password
+                    }
                 }).then((res) => {
                     Indicator.close();
                     console.log(res.data);
@@ -62,7 +67,9 @@
                                 position: "bottom",
                                 duration: 1500
                             });
-                            window.location.href = "/";
+                            setTimeout(() => {
+                                window.location.href = "/switchClass";
+                            }, 1500);
                             break;
                         case 500:
                             Toast({
@@ -80,9 +87,8 @@
                             break;
                     }
                 }).catch((err) => {
-                    Indicator.close();
-                    console.log(err);
-                })
+                    console.log(err)
+                });
             },
         },
     })

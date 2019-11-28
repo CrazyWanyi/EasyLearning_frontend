@@ -5,7 +5,11 @@ div .main {
 .mint-header {
     padding: 24px 10px;
     background-color: #4ECA7A;
-    font-size: 16px;
+    font-size: 18px;
+}
+
+.mint-header-button {
+    font-size: 14px;
 }
 
 .btn {

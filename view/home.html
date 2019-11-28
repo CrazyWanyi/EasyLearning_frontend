@@ -33,12 +33,11 @@
                     <div class="weui-cell__hd"
                          style="position: relative;margin: 10px 20px 10px 20px;text-align: center">
                         <img src="/static/image/teacher_avatar.png" style="width: 50px;" alt="">
-                        <p class="teacher_name">王宇老师</p>
+                        <p class="teacher_name">{{info.teacher_name}}</p>
                     </div>
                     <div class="weui-cell__bd" style="position: relative;">
-                        <p class="course_name">软件工程导论</p>
-                        <p class="course_introduction">软件工程是一门工程科学，研究软件开发，维护和软件管理。 本课程是计算机科学与技术专业指导教学计划中规定的教学链接的一部分。
-                            教学目的是介绍软件工程的基本原理和主要内容，并为学生进一步学习与软件工程有关的其他课程，如软件需求过程和软件分析与设计，软件项目管理和软件过程管理奠定坚实的基础。 </p>
+                        <p class="course_name">{{info.classname}}</p>
+                        <p class="course_introduction">{{info.class_description}}</p>
                     </div>
                 </div>
                 <div class="weui-grids">
@@ -75,10 +74,10 @@
                             <img class="avatar" src="/static/image/avatar.png" alt="">
                         </div>
                         <div class="weui-cell__bd">
-                            <p class="username">{{user.username}}<span
-                                    class="type student">{{user.type}}</span>
+                            <p class="username">{{info.username}}<span
+                                    class="type student">{{info.type}}</span>
                             </p>
-                            <p class="email">{{user.email}}</p>
+                            <p class="email">{{info.email}}</p>
                         </div>
                         <div class="weui-cell__ft link">修改个人资料</div>
                     </a>
@@ -140,17 +139,38 @@
     </mt-tabbar>
 </div>
 <script>
+    const MessageBox = MINT.MessageBox;
+
     const vm = new Vue({
         el: "#app",
         data: {
             selected: "我的",
             home_icon: "/static/image/home.png",
             me_icon: "/static/image/me_active.png",
+            info: {}
         },
         methods: {
             switchClass: function () {
-                alert("ss")
+                window.location.href = "/switchClass"
             }
+        },
+        created() {
+            axios.defaults.baseURL = "http://localhost:8080";
+            axios.defaults.withCredentials = true;
+            axios({
+                method: 'GET',
+                url: "/api/user/home",
+            }).then((res) => {
+                let data = res.data;
+                console.log(data);
+                if (data.status === 401) {
+                    MessageBox.alert('您未登录，请登录').then(action => {
+                        window.location.href = "/login";
+                    });
+                } else if (data.status === 200) {
+                    this.info = data.data
+                }
+            })
         },
         beforeMount() {
             let front = window.location.search.split('&')[0].split('=')[1];
