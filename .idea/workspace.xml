@@ -2,13 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8b928fed-f6cf-44b9-88f1-29efbd9a6794" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/routes/user.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/image/left.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/view/user/userJoinClass.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/default.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/default.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/user/userLogin.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/user/userLogin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/user/userRegister.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/user/userRegister.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/exam/exam.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/exam.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/user/userLogin.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/user/userRegister.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/user/userSwitchClass.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/exam/exam.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/exam/examMain.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/user/userLogin.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/user/userLogin.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/user/userRegister.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/user/userRegister.html" afterDir="false" />
@@ -41,21 +45,21 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="12.10.0" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/script" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/image" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\Program\Go\EasyLearning_frontend\static\script" />
-      <recent name="E:\Program\Go\EasyLearning_frontend\static\css" />
-      <recent name="E:\Program\Go\EasyLearning_frontend\static\image" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Program\Go\EasyLearning_frontend\routes" />
       <recent name="E:\Program\Go\EasyLearning_frontend\view\user" />
       <recent name="E:\Program\Go\EasyLearning_frontend\view" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Program\Go\EasyLearning_frontend\static\image" />
+      <recent name="E:\Program\Go\EasyLearning_frontend\static\script" />
+      <recent name="E:\Program\Go\EasyLearning_frontend\static\css" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -106,7 +110,9 @@
       <workItem from="1574756771533" duration="1677000" />
       <workItem from="1574821581274" duration="535000" />
       <workItem from="1574832607256" duration="17082000" />
-      <workItem from="1574926967805" duration="6237000" />
+      <workItem from="1574926967805" duration="15063000" />
+      <workItem from="1575019793506" duration="2639000" />
+      <workItem from="1575288138060" duration="6755000" />
     </task>
     <servers />
   </component>

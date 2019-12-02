@@ -1,10 +1,10 @@
 const express = require('express');
-const axios = require('axios');
+const config = require('config-lite')(__dirname);
 
 const router = express.Router();
 
 router.get('/exam', (req, res) => {
-    res.render('exam/exam.html')
+    res.sendFile(`${config.VIEW_DIR}exam/examMain.html`);
 });
 
 module.exports = router;
