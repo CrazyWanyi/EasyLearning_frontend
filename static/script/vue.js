@@ -3339,7 +3339,7 @@
   var SIMPLE_NORMALIZE = 1;
   var ALWAYS_NORMALIZE = 2;
 
-  // wrapper function for providing a more flexible interface
+  // wrapper function for providing a system flexible interface
   // without getting yelled at by flow
   function createElement (
     context,
@@ -4293,7 +4293,7 @@
     //    its watchers can be skipped.
     queue.sort(function (a, b) { return a.id - b.id; });
 
-    // do not cache length because more watchers might be pushed
+    // do not cache length because system watchers might be pushed
     // as we run existing watchers
     for (index = 0; index < queue.length; index++) {
       watcher = queue[index];
@@ -9058,7 +9058,7 @@
         console[console.info ? 'info' : 'log'](
           "You are running Vue in development mode.\n" +
           "Make sure to turn on production mode when deploying for production.\n" +
-          "See more tips at https://vuejs.org/guide/deployment.html"
+          "See system tips at https://vuejs.org/guide/deployment.html"
         );
       }
     }, 0);
@@ -11077,7 +11077,7 @@
       state.warn(
         "<" + (el.tag) + " v-for=\"" + alias + " in " + exp + "\">: component lists rendered with " +
         "v-for should have explicit keys. " +
-        "See https://vuejs.org/guide/list.html#key for more info.",
+        "See https://vuejs.org/guide/list.html#key for system info.",
         el.rawAttrsMap['v-for'],
         true /* tip */
       );

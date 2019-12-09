@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
     <meta name="theme-color" content="#4ECA7A">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/static/css/mini-ui.css">
@@ -15,6 +15,7 @@
     <script src="/static/script/mint-ui.js"></script>
     <script src="/static/script/weui_1.2.1.js"></script>
     <script src="/static/script/axios.js"></script>
+    <script src="/static/script/main.js"></script>
     <title>主页面</title>
     <style>
         .mint-tabbar > .mint-tab-item.is-selected {
@@ -41,25 +42,25 @@
                     </div>
                 </div>
                 <div class="weui-grids">
-                    <a href="javascript:" class="weui-grid">
+                    <a href="javascript:window.location.href = '/student_list'" class="weui-grid">
                         <div class="weui-grid__icon">
                             <img src="/static/image/icon_tabbar.png" alt="">
                         </div>
                         <p class="weui-grid__label">班级学生</p>
                     </a>
-                    <a href="javascript:" class="weui-grid">
+                    <a href="javascript:window.location.href = '/exam_list'" class="weui-grid">
                         <div class="weui-grid__icon">
                             <img src="/static/image/icon_tabbar.png" alt="">
                         </div>
-                        <p class="weui-grid__label">在线练习</p>
+                        <p class="weui-grid__label">在线测试</p>
                     </a>
-                    <a href="javascript:" class="weui-grid">
+                    <a href="javascript:window.location.href = '/broadcast'" class="weui-grid">
                         <div class="weui-grid__icon">
                             <img src="/static/image/icon_tabbar.png" alt="">
                         </div>
                         <p class="weui-grid__label">留言板</p>
                     </a>
-                    <a href="javascript:" class="weui-grid">
+                    <a href="javascript:window.location.href = '/gradebook'" class="weui-grid">
                         <div class="weui-grid__icon">
                             <img src="/static/image/icon_tabbar.png" alt="">
                         </div>
@@ -69,13 +70,14 @@
             </mt-tab-container-item>
             <mt-tab-container-item id="我的">
                 <div class="weui-cells" id="user">
-                    <a class="weui-cell weui-cell_access weui-cell_example" href="javascript:">
+                    <a class="weui-cell weui-cell_access weui-cell_example"
+                       href="javascript:window.location.href = '/modifyInfo'">
                         <div class="weui-cell__hd">
-                            <img class="avatar" src="/static/image/avatar.png" alt="">
+                            <img class="avatar" src="/static/image/avatar_girl.png" alt="">
                         </div>
                         <div class="weui-cell__bd">
                             <p class="username">{{info.username}}<span
-                                    class="type student">{{info.type}}</span>
+                                    :class="['type', info.type == 'student' ? 'student' : 'teacher']">{{info.type == 'student' ? '学生' : '老师'}}</span>
                             </p>
                             <p class="email">{{info.email}}</p>
                         </div>
@@ -93,14 +95,15 @@
                         </div>
                         <div class="weui-cell__ft link">{{info.classname}}</div>
                     </a>
-                    <a class="weui-cell weui-cell_access weui-cell_example" href="javascript:">
+                    <a class="weui-cell weui-cell_access weui-cell_example"
+                       href="javascript:window.location.href = '/announcement'">
                         <div class="weui-cell__hd">
                             <img class="icon" src="/static/image/default.png" alt="">
                         </div>
                         <div class="weui-cell__bd">
                             <p>系统公告</p>
                         </div>
-                        <div class="weui-cell__ft"></div>
+                        <div class="weui-cell__ft link">4条</div>
                     </a>
                 </div>
                 <div class="weui-cells__title"></div>
@@ -155,7 +158,7 @@
             }
         },
         created() {
-            axios.defaults.baseURL = "http://192.168.1.156:8080";
+            axios.defaults.baseURL = back_end_url;
             axios.defaults.withCredentials = true;
             axios({
                 method: 'GET',

@@ -175,7 +175,7 @@ var encodeReserveRE = /[!'()*]/g;
 var encodeReserveReplacer = function (c) { return '%' + c.charCodeAt(0).toString(16); };
 var commaRE = /%2C/g;
 
-// fixed encodeURIComponent which is more conformant to RFC3986:
+// fixed encodeURIComponent which is system conformant to RFC3986:
 // - escapes [!'()*]
 // - preserve commas
 var encode = function (str) { return encodeURIComponent(str)
@@ -1726,7 +1726,7 @@ var hashStartsWithNumberRE = /^#\d/;
 function scrollToPosition (shouldScroll, position) {
   var isObject = typeof shouldScroll === 'object';
   if (isObject && typeof shouldScroll.selector === 'string') {
-    // getElementById would still fail if the selector contains a more complicated query like #home[data-attr]
+    // getElementById would still fail if the selector contains a system complicated query like #home[data-attr]
     // but at the same time, it doesn't make much sense to select an element with an id and an extra selector
     var el = hashStartsWithNumberRE.test(shouldScroll.selector) // $flow-disable-line
       ? document.getElementById(shouldScroll.selector.slice(1)) // $flow-disable-line
@@ -1768,7 +1768,7 @@ var supportsPushState = inBrowser && (function () {
   return window.history && 'pushState' in window.history
 })();
 
-// use User Timing api (if present) for more accurate key precision
+// use User Timing api (if present) for system accurate key precision
 var Time = inBrowser && window.performance && window.performance.now
   ? window.performance
   : Date;

@@ -3,8 +3,8 @@ const config = require('config-lite')(__dirname);
 
 const router = express.Router();
 
-router.get('/announcement', (req, res) => {
-    res.sendFile(`${config.VIEW_DIR}system/announcement.html`);
+router.get('/gradebook', (req, res) => {
+    res.sendFile(`${config.VIEW_DIR}gradebook/gradeList.html`);
 });
 
 module.exports = router;

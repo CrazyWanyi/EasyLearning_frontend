@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
     <meta name="theme-color" content="#4ECA7A">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/static/css/mini-ui.css">
@@ -11,10 +11,15 @@
     <script src="/static/script/vue.js"></script>
     <script src="/static/script/mint-ui.js"></script>
     <script src="/static/script/axios.js"></script>
-    <title>用户注册</title>
+    <script src="/static/script/main.js"></script>
+    <title>测试中</title>
     <style>
         .mint-popup {
             background: transparent;
+        }
+
+        .mint-radiolist {
+            color: #6b6b6b;
         }
 
         .mint-cell-wrapper {
@@ -71,7 +76,7 @@
         }
 
         .question span {
-            padding-left: 10px;
+            /*padding-left: 10px;*/
         }
 
         .index {
@@ -92,7 +97,7 @@
 <body>
 <div id="app">
     <mt-header fixed title="测试">
-        <mt-button slot="right" @click="switchList">列表</mt-button>
+        <mt-button slot="right" @click="switchList">题目列表</mt-button>
     </mt-header>
     <div class="main">
         <mt-tab-container v-model="active">
@@ -134,18 +139,18 @@
             size: 5,
             score: 1.5,
             title: [
-                {id: 0, content: "描述软件工程的概念描述软件工程的概念描述软件工。"},
-                {id: 1, content: "描述面向对象模型"},
-                {id: 2, content: "描述面向过程的概念"},
-                {id: 3, content: "描述瀑布模型的概念"},
-                {id: 4, content: "描述PDF的概念"},
+                {id: 0, content: "从结构化的瀑布模型看，在它的生命周期中，下面的哪个环节出错，对软件的影响最大"},
+                {id: 1, content: "软件工程的出现主要是由于"},
+                {id: 2, content: "UML是软件开发中的一个重要工具,它主要应用于哪种软件开发方法"},
+                {id: 3, content: "结构化分析方法是一种预先严格定义需求的方法,它在实施时强调的是分析对象的"},
+                {id: 4, content: "软件开发的结构化生命周期方法将软件生命周期划分成"},
             ],
             question: [
-                {id: 0, content: ["不晓得", "不清楚", "书上有", "百度"]},
-                {id: 1, content: ["不晓得", "不清楚", "书上有", "百度"]},
-                {id: 2, content: ["不晓得", "不清楚", "书上有", "百度"]},
-                {id: 3, content: ["不晓得", "不清楚", "书上有", "百度"]},
-                {id: 4, content: ["不晓得", "不清楚", "书上有", "百度"]},
+                {id: 0, content: ["详细设计阶段", "概要设计阶段", "[♥]需求分析阶段", "测试和运行阶段"]},
+                {id: 1, content: ["程序设计方法学的影响", "其它工程科学的影响", "[♥]软件危机的出现", "计算机的发展"]},
+                {id: 2, content: ["基于瀑布模型的结构化方法", "基于需求动态定义的原型化方法", "基于数据的数据流开发方法", "[♥]基于对象的面向对象的方法"]},
+                {id: 3, content: ["控制流", "[♥]数据流", "程序流", "指令流"]},
+                {id: 4, content: ["[♥]计划阶段、开发阶段、运行阶段", "计划阶段、编程阶段、测试阶段", "总体设计、详细设计、编程调试", "需求分析、功能定义、系统设计"]},
             ],
             answer: []
         },

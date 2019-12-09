@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
     <meta name="theme-color" content="#4ECA7A">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/static/css/mini-ui.css">
@@ -11,6 +11,7 @@
     <script src="/static/script/vue.js"></script>
     <script src="/static/script/mint-ui.js"></script>
     <script src="/static/script/axios.js"></script>
+    <script src="/static/script/main.js"></script>
     <title>加入班级</title>
 </head>
 <body>
@@ -38,7 +39,7 @@
                         text: "请稍后...",
                         spinnerType: 'fading-circle'
                     });
-                    axios.defaults.baseURL = "http://192.168.1.156:8080";
+                    axios.defaults.baseURL = back_end_url;
                     axios.defaults.withCredentials = true;
                     axios({
                         method: 'PUT',

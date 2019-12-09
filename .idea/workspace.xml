@@ -2,18 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8b928fed-f6cf-44b9-88f1-29efbd9a6794" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/routes/user.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/image/left.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/user/userJoinClass.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/broadcast.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/gradebook.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/student.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/system.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/image/avatar_boy.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/image/avatar_girl.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/script/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/view/broadcast/broadcastMain.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/view/broadcast/broadcastSend.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/view/exam/examEnd.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/view/exam/examList.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/view/gradebook/gradeList.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/view/student/studentList.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/view/system/announcement.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/view/user/userInfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Administrator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/Administrator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/exam/exam.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/exam.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/exam.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/exam.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/user/userLogin.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/user/userRegister.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/user/userSwitchClass.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/exam/exam.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/exam/examMain.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/script/vue-router.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/script/vue-router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/script/vue.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/script/vue.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/404.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/exam/examMain.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/exam/examMain.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/user/userJoinClass.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/user/userJoinClass.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/user/userLogin.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/user/userLogin.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/user/userRegister.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/user/userRegister.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/user/userSwitchClass.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/user/userSwitchClass.html" afterDir="false" />
@@ -45,21 +59,22 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="12.10.0" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/image" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../APICloud/玩转成都" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="ts.external.directory.path" value="D:\Program Files\JetBrains\WebStorm 2019.2.4\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\Program\Go\EasyLearning_frontend\routes" />
-      <recent name="E:\Program\Go\EasyLearning_frontend\view\user" />
-      <recent name="E:\Program\Go\EasyLearning_frontend\view" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Program\Go\EasyLearning_frontend\static\image" />
       <recent name="E:\Program\Go\EasyLearning_frontend\static\script" />
       <recent name="E:\Program\Go\EasyLearning_frontend\static\css" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Program\Go\EasyLearning_frontend\routes" />
+      <recent name="E:\Program\Go\EasyLearning_frontend\view\user" />
+      <recent name="E:\Program\Go\EasyLearning_frontend\view" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -112,7 +127,11 @@
       <workItem from="1574832607256" duration="17082000" />
       <workItem from="1574926967805" duration="15063000" />
       <workItem from="1575019793506" duration="2639000" />
-      <workItem from="1575288138060" duration="6755000" />
+      <workItem from="1575288138060" duration="7508000" />
+      <workItem from="1575361575234" duration="5584000" />
+      <workItem from="1575527114884" duration="11769000" />
+      <workItem from="1575549669380" duration="599000" />
+      <workItem from="1575790036751" duration="1213000" />
     </task>
     <servers />
   </component>
