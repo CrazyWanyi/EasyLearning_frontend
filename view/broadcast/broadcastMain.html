@@ -32,6 +32,57 @@
             font-size: 10px;
             color: #9c9c9c;
         }
+
+        .mint-popup {
+            position: fixed;
+            background: #fff;
+            top: 88px;
+            left: 50%;
+            -webkit-transform: translate3d(-50%, -50%, 0);
+            transform: translate3d(-50%, -50%, 0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-transition: .2s ease-out;
+            transition: .2s ease-out;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #fff;
+            padding: 20px 0 20px 0;
+            width: 80%;
+        }
+
+        .weui-cell:before {
+            content: " ";
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            height: 1px;
+            border-top: none;
+            color: rgba(0, 0, 0, 0.1);
+            -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+            -webkit-transform: scaleY(0.5);
+            transform: scaleY(0.5);
+            left: 16px;
+            z-index: 2;
+        }
+
+        .weui-cells:after {
+            content: " ";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            height: 1px;
+            border-bottom: none;
+            color: rgba(0, 0, 0, 0.1);
+            -webkit-transform-origin: 0 100%;
+            transform-origin: 0 100%;
+            -webkit-transform: scaleY(0.5);
+            transform: scaleY(0.5);
+            z-index: 2;
+        }
     </style>
 </head>
 <body>
@@ -41,16 +92,33 @@
         <mt-button slot="right" onclick="window.location.href = '/broadcast_send'">发布留言</mt-button>
     </mt-header>
     <div class="main">
-        <div class="weui-cells" v-for="i in 20">
-            <a class="weui-cell weui-cell_access" href="javascript:">
+        <mt-popup v-model="popupVisible" popup-transition="popup-fade">
+            <div class="weui-cells">
+                <div class="weui-cell weui-cell_example">
+                    <div class="weui-cell__bd">
+                        <p>标题</p>
+                    </div>
+                    <div class="weui-cell__ft">{{title}}</div>
+                </div>
+                <div class="weui-cell weui-cell_example">
+                    <div class="weui-cell__bd">
+                        <p>内容</p>
+                    </div>
+                    <div class="weui-cell__ft">{{content}}</div>
+                </div>
+            </div>
+        </mt-popup>
+        <div class="weui-cells" v-for="item in broadcast_list">
+            <a class="weui-cell weui-cell_access" href="javascript:"
+               @click="showDetail(item.title, item.content)">
                 <div class="weui-cell__hd">
-                    <img src="/static/image/avatar_girl.png" alt="" style="width:46px;margin-right:16px;display:block">
+                    <img :src="item.from_user_gender === '女' ? '/static/image/avatar_girl.png' : '/static/image/avatar_boy.png'" alt="" style="width:46px;margin-right:16px;display:block">
                 </div>
                 <div class="weui-cell__bd">
-                    <p class="title">请问宇宙的起源在哪里？</p>
-                    <div class="time">2019.12.12 08:00:00 张大彪</div>
+                    <p class="title">{{item.title}}</p>
+                    <div class="time">{{item.created_at | dateFormat}} {{item.from_username}}</div>
                 </div>
-                <div class="weui-cell__ft">回复 0</div>
+                <div class="weui-cell__ft">详情</div>
             </a>
         </div>
     </div>
@@ -62,8 +130,53 @@
     const vm = new Vue({
         el: "#app",
         data: {
-            total: 10
+            total: 10,
+            broadcast_list: null,
+            popupVisible: false,
+            title: "",
+            content: ""
         },
+        methods: {
+            showDetail: function (t, c) {
+                this.title = t;
+                this.content = c;
+                this.popupVisible = true;
+            }
+        },
+        created() {
+            Indicator.open({
+                text: "获取数据中...",
+                spinnerType: 'fading-circle'
+            });
+            axios.defaults.baseURL = back_end_url;
+            axios.defaults.withCredentials = true;
+            axios({
+                method: 'GET',
+                url: "/api/broadcasts",
+            }).then((res) => {
+                Indicator.close();
+                let data = res.data;
+                console.log(data);
+                if (data.status === 404) {
+                    MessageBox.alert('失败').then(action => {
+                        window.location.href = "/";
+                    });
+                } else if (data.status === 401) {
+                    window.location.href = "/login";
+                } else {
+                    this.broadcast_list = data.data;
+                    this.broadcast_list.sort(function (a, b) {
+                        return new Date(b.created_at) - new Date(a.created_at)
+                    })
+                }
+            })
+        },
+        filters: {
+            dateFormat: function (dateStr) {
+                let date = new Date(dateStr);
+                return date.toLocaleString();
+            },
+        }
     });
 </script>
 </body>

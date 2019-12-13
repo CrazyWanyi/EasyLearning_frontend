@@ -102,7 +102,7 @@
     <div class="main">
         <mt-tab-container v-model="active">
             <mt-tab-container-item v-for="item in title" :id="item.id" :key="item.id">
-                <p class="title">软件工程导论课第一次测试题</p>
+                <p class="title">{{description}}</p>
                 <p class="deadline">截止时间：{{deadline | dateFormat}}</p>
                 <p class="part">一、单选题<span>（共{{size}}题，共{{size * score}}分）</span></p>
                 <p class="label">第{{item.id+1}} / {{size}}题</p>
@@ -126,6 +126,13 @@
     </mt-tabbar>
 </div>
 <script>
+    function getvl(name) {
+        const reg = new RegExp("(^|\\?|&)" + name + "=([^&]*)(\\s|&|$)", "i");
+        if (reg.test(decodeURI(window.location.href)))
+            return unescape(RegExp.$2.replace(/\+/g, " "));
+        return "";
+    }
+
     const MessageBox = MINT.MessageBox;
     const Indicator = MINT.Indicator;
     const Toast = MINT.Toast;
@@ -138,24 +145,43 @@
             text: "下一题",
             size: 5,
             score: 1.5,
-            title: [
-                {id: 0, content: "从结构化的瀑布模型看，在它的生命周期中，下面的哪个环节出错，对软件的影响最大"},
-                {id: 1, content: "软件工程的出现主要是由于"},
-                {id: 2, content: "UML是软件开发中的一个重要工具,它主要应用于哪种软件开发方法"},
-                {id: 3, content: "结构化分析方法是一种预先严格定义需求的方法,它在实施时强调的是分析对象的"},
-                {id: 4, content: "软件开发的结构化生命周期方法将软件生命周期划分成"},
-            ],
-            question: [
-                {id: 0, content: ["详细设计阶段", "概要设计阶段", "[♥]需求分析阶段", "测试和运行阶段"]},
-                {id: 1, content: ["程序设计方法学的影响", "其它工程科学的影响", "[♥]软件危机的出现", "计算机的发展"]},
-                {id: 2, content: ["基于瀑布模型的结构化方法", "基于需求动态定义的原型化方法", "基于数据的数据流开发方法", "[♥]基于对象的面向对象的方法"]},
-                {id: 3, content: ["控制流", "[♥]数据流", "程序流", "指令流"]},
-                {id: 4, content: ["[♥]计划阶段、开发阶段、运行阶段", "计划阶段、编程阶段、测试阶段", "总体设计、详细设计、编程调试", "需求分析、功能定义、系统设计"]},
-            ],
+            description: "",
+            title: [],
+            question: [],
             answer: []
         },
+        created() {
+            Indicator.open({
+                text: "获取数据中...",
+                spinnerType: 'fading-circle'
+            });
+            axios.defaults.baseURL = back_end_url;
+            axios.defaults.withCredentials = true;
+            axios({
+                method: 'GET',
+                url: "/api/exam/" + getvl("eid"),
+            }).then((res) => {
+                Indicator.close();
+                let data = res.data;
+                console.log(data);
+                if (data.status === 404) {
+                    window.location.href = "/";
+                } else if (data.status === 401) {
+                    window.location.href = "/login";
+                } else {
+                    console.log(data.data);
+
+                    this.description = data.data.description;
+                    this.deadline = new Date(data.data.deadline);
+                    this.size = data.data.size;
+                    this.score = data.data.score;
+                    this.title = JSON.parse(data.data.questions);
+                    this.question = JSON.parse(data.data.options)
+                }
+            })
+        },
         beforeMount() {
-            for (let i = 0;i < this.size; i++) {
+            for (let i = 0; i < this.size; i++) {
                 this.answer.push({id: i, content: ""})
             }
         },
@@ -187,7 +213,6 @@
                 this.popupVisible = false;
             },
             submit: function () {
-                console.log(this.answer);
                 for (let i in this.answer) {
                     if (this.answer[i].content === "") {
                         Toast({
@@ -207,6 +232,36 @@
                         }
                     }
                 }
+                console.log(this.answer);
+                Indicator.open({
+                    text: "获取数据中...",
+                    spinnerType: 'fading-circle'
+                });
+                axios({
+                    method: 'POST',
+                    url: "/api/grade/calc",
+                    data: {
+                        answer: {
+                            data: this.answer,
+
+                        },
+                        exam_id: getvl("eid")
+                    }
+                }).then((res) => {
+                    Indicator.close();
+                    let data = res.data;
+                    console.log(data);
+                    if (data.status === 404) {
+                        window.location.href = "/";
+                    } else if (data.status === 401) {
+                        window.location.href = "/login";
+                    } else if (data.status === 500) {
+                        window.location.href = "/exam_list";
+                    } else {
+                        console.log(data.data);
+                        window.location.href = `/exam_end?total=${data.data.final_score}`;
+                    }
+                })
             }
         },
         watch: {

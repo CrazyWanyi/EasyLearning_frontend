@@ -21,13 +21,19 @@
     </mt-header>
     <div class="main">
         <mt-field label="姓名" placeholder="请输入姓名，2-20个字符" type="text" v-model="username"></mt-field>
+        <mt-field label="内部号" placeholder="请输入学号或工号" type="number" v-model="internal_id"></mt-field>
         <mt-field label="邮箱" placeholder="请输入邮箱，3-30个字符" type="email" v-model="email"></mt-field>
         <mt-field label="密码" placeholder="请输入密码，2-30个字符" type="password" v-model="password"></mt-field>
         <mt-field label="确认密码" placeholder="请再次输入密码" type="password" v-model="password_confirm"></mt-field>
         <mt-radio
+                title="请选择您的性别"
+                v-model="gender"
+                :options="['男','女']">
+        </mt-radio>
+        <mt-radio
                 title="请选择您的身份"
                 v-model="type"
-                :options="['学生', '老师']">
+                :options="options">
         </mt-radio>
         <mt-button class="btn" type="default" @click="submit">立即注册</mt-button>
     </div>
@@ -40,14 +46,26 @@
         el: "#app",
         data: {
             username: "",
+            internal_id: "201758321001",
             email: "",
             password: "",
             password_confirm: "",
-            type: "学生",
+            type: "student",
+            gender: "男",
+            options: [
+                {
+                    label: '学生',
+                    value: 'student'
+                },
+                {
+                    label: '老师',
+                    value: 'teacher'
+                }
+            ]
         },
         methods: {
             submit: function () {
-                if (this.username === "" || this.email === "" || this.password === "" || this.password_confirm === "") {
+                if (this.username === "" || this.email === "" || this.password === "" || this.password_confirm === "" || this.internal_id === "") {
                     Toast({
                         message: "请完善输入",
                         position: "bottom",
@@ -68,7 +86,6 @@
                     spinnerType: 'fading-circle'
                 });
                 let registerInfo = this.$data;
-                this.registerInfo = this.registerInfo === "学生" ? "student" : "teacher";
                 axios.defaults.withCredentials = true;
                 axios.defaults.baseURL = back_end_url;
                 axios.post("/api/user/register", registerInfo)

@@ -73,7 +73,7 @@
                     <a class="weui-cell weui-cell_access weui-cell_example"
                        href="javascript:window.location.href = '/modifyInfo'">
                         <div class="weui-cell__hd">
-                            <img class="avatar" src="/static/image/avatar_girl.png" alt="">
+                            <img class="avatar" :src="info.gender === '女' ? '/static/image/avatar_girl.png' : '/static/image/avatar_boy.png'" alt="">
                         </div>
                         <div class="weui-cell__bd">
                             <p class="username">{{info.username}}<span

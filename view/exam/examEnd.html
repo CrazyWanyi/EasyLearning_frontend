@@ -62,13 +62,20 @@
     <mt-button class="btn" type="default" onclick="window.location.href = '/'">返回首页</mt-button>
 </div>
 <script>
+    function getvl(name) {
+        const reg = new RegExp("(^|\\?|&)" + name + "=([^&]*)(\\s|&|$)", "i");
+        if (reg.test(decodeURI(window.location.href)))
+            return unescape(RegExp.$2.replace(/\+/g, " "));
+        return "";
+    }
+
     const MessageBox = MINT.MessageBox;
     const Indicator = MINT.Indicator;
     const Toast = MINT.Toast;
     const vm = new Vue({
         el: "#app",
         data: {
-            total: 10
+            total: getvl("total")
         },
     });
 </script>

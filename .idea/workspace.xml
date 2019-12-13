@@ -2,35 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8b928fed-f6cf-44b9-88f1-29efbd9a6794" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/routes/broadcast.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes/gradebook.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes/student.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes/system.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/image/avatar_boy.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/image/avatar_girl.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/script/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/broadcast/broadcastMain.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/broadcast/broadcastSend.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/exam/examEnd.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/exam/examList.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/gradebook/gradeList.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/student/studentList.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/system/announcement.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/user/userInfo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Administrator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/Administrator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/exam.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/exam.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/script/vue-router.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/script/vue-router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/script/vue.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/script/vue.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/404.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/script/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/script/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/broadcast/broadcastMain.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/broadcast/broadcastMain.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/broadcast/broadcastSend.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/broadcast/broadcastSend.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/exam/examEnd.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/exam/examEnd.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/exam/examList.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/exam/examList.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/exam/examMain.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/exam/examMain.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/gradebook/gradeList.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/gradebook/gradeList.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/user/userJoinClass.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/user/userJoinClass.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/user/userLogin.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/user/userLogin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/student/studentList.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/student/studentList.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/user/userRegister.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/user/userRegister.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/user/userSwitchClass.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/user/userSwitchClass.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -59,7 +42,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="12.10.0" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../APICloud/玩转成都" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
@@ -132,6 +115,12 @@
       <workItem from="1575527114884" duration="11769000" />
       <workItem from="1575549669380" duration="599000" />
       <workItem from="1575790036751" duration="1213000" />
+      <workItem from="1575871451484" duration="1120000" />
+      <workItem from="1575893732118" duration="907000" />
+      <workItem from="1575895983177" duration="94000" />
+      <workItem from="1575966610780" duration="4260000" />
+      <workItem from="1576134882158" duration="12820000" />
+      <workItem from="1576202646642" duration="9945000" />
     </task>
     <servers />
   </component>

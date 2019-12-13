@@ -47,7 +47,36 @@
         methods: {
             submit() {
                 if (this.title_state === "success" && this.content_state === "success" && this.title !== "" && this.content !== "") {
-                    console.log("submit")
+                    console.log("submit");
+                    Indicator.open({
+                        text: "提交中...",
+                        spinnerType: 'fading-circle'
+                    });
+                    axios.defaults.withCredentials = true;
+                    axios.defaults.baseURL = back_end_url;
+                    axios.post("/api/broadcast", {
+                        "title": this.title,
+                        "content": this.content
+                    })
+                        .then((res) => {
+                            Indicator.close();
+                            if (res.data.status === 200) {
+                                Toast({
+                                    message: "留言成功",
+                                    position: "bottom",
+                                    duration: 1500
+                                });
+                                setTimeout(() => {
+                                    window.location.href = "/broadcast";
+                                }, 1500);
+                            } else {
+                                Toast({
+                                    message: res.data.error,
+                                    position: "bottom",
+                                    duration: 1500
+                                });
+                            }
+                        })
                 }
             }
         },

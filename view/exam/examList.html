@@ -14,7 +14,7 @@
     <script src="/static/script/main.js"></script>
     <title>测试列表</title>
     <style>
-        .done .mint-cell-wrapper .mint-cell-value span{
+        .done .mint-cell-wrapper .mint-cell-value span {
             color: #4ECA7A;
         }
 
@@ -22,7 +22,7 @@
             display: none;
         }
 
-        .mint-cell-wrapper .mint-cell-value span{
+        .mint-cell-wrapper .mint-cell-value span {
             color: #ca0000;
         }
     </style>
@@ -33,10 +33,17 @@
         <mt-button icon="back" slot="left" onclick="window.location.href = '/'">返回</mt-button>
     </mt-header>
     <div class="main">
-        <mt-cell class="done" title="第一章章末测试题" label="截止时间：2017-02-02 15:00:00" is-link value="已测试"></mt-cell>
-        <mt-cell class="" title="第二章章末测试题" label="截止时间：2017-02-02 15:00:00" to="/exam" is-link value="未测试"></mt-cell>
-        <mt-cell class="" title="第三章章末测试题" label="截止时间：2017-02-02 15:00:00" to="/exam" is-link value="未测试"></mt-cell>
-        <mt-cell class="" title="第四章章末测试题" label="截止时间：2017-02-02 15:00:00" to="/exam" is-link value="未测试"></mt-cell>
+        <div v-if="ready">
+            <mt-cell :class="[item.finished ? 'done' : '']" v-for="item in exam_list" :key="item._id"
+                     :title="item.exam_name"
+                     :label="item.deadline | dateFormat"
+                     :to="item.finished ? '#' : item._id | linkFormat" is-link
+                     :value="item.finished | valueFormat"></mt-cell>
+        </div>
+        <!--        <mt-cell class="done" title="第一章章末测试题" label="截止时间：2017-02-02 15:00:00" is-link value="已测试"></mt-cell>-->
+                <mt-cell class="" title="第二章章末测试题" label="截止时间：2019/12/30 上午9:00:00" to="/exam" is-link value="未测试"></mt-cell>
+        <!--        <mt-cell class="" title="第三章章末测试题" label="截止时间：2017-02-02 15:00:00" to="/exam" is-link value="未测试"></mt-cell>-->
+        <!--        <mt-cell class="" title="第四章章末测试题" label="截止时间：2017-02-02 15:00:00" to="/exam" is-link value="未测试"></mt-cell>-->
     </div>
 </div>
 <script>
@@ -46,8 +53,87 @@
     const vm = new Vue({
         el: "#app",
         data: {
-            total: 10
+            total: 10,
+            exam_list: [],
+            ready: false,
+            grade_list: null
         },
+        created() {
+            Indicator.open({
+                text: "获取数据中...",
+                spinnerType: 'fading-circle'
+            });
+            axios.defaults.baseURL = back_end_url;
+            axios.defaults.withCredentials = true;
+
+            axios({
+                method: 'GET',
+                url: "/api/exams/list",
+            }).then((res) => {
+                Indicator.close();
+                let data = res.data;
+                if (data.status === 404) {
+                    MessageBox.alert('当前没有考试哦').then(action => {
+                        window.location.href = "/";
+                    });
+                } else if (data.status === 401) {
+                    window.location.href = "/login";
+                } else {
+                    this.exam_list = data.data;
+                    if (this.exam_list === null) {
+                        return
+                    }
+                    for (let i = 0; i < this.exam_list.length; i++) {
+                        this.exam_list[i]["finished"] = false;
+                    }
+                    axios({
+                        method: 'GET',
+                        url: "/api/grades",
+                    }).then((res) => {
+                        Indicator.close();
+                        let data = res.data;
+                        if (data.status === 404) {
+                            MessageBox.alert('失败').then(action => {
+                                window.location.href = "/";
+                            });
+                        } else if (data.status === 401) {
+                            window.location.href = "/login";
+                        } else {
+                            this.grade_list = data.data;
+                            if (this.grade_list === null) {
+                                return
+                            }
+                            for (let i = 0; i < this.exam_list.length; i++) {
+                                for (let j = 0; i < this.grade_list.length; j++) {
+                                    if (this.grade_list[j].exam_id === this.exam_list[i]._id) {
+                                        this.exam_list[i]["finished"] = true;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            });
+        },
+        beforeMount() {
+            this.ready = true;
+        },
+        filters: {
+            dateFormat: function (dateStr) {
+                let date = new Date(dateStr);
+                return "截止时间：" + date.toLocaleString();
+            },
+            linkFormat: function (id) {
+                if (id === "#") {
+                    return id
+                }
+                return "/exam?eid=" + id;
+            },
+            valueFormat: function (f) {
+                return f ? "已完成" : "未测试"
+            }
+        }
     });
 </script>
 </body>

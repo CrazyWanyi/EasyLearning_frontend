@@ -33,14 +33,14 @@
         <mt-button icon="back" slot="left" onclick="window.location.href = '/'">返回</mt-button>
     </mt-header>
     <div class="main">
-        <div class="weui-cells" v-for="i in 50">
+        <div class="weui-cells" v-for="item in student_list">
             <a class="weui-cell weui-cell_access weui-cell_example" href="javascript:">
                 <div class="weui-cell__hd">
-                    <img class="avatar" src="/static/image/avatar_boy.png" alt="">
+                    <img class="avatar" :src="item.gender === '女' ? '/static/image/avatar_girl.png' : '/static/image/avatar_boy.png'" alt="">
                 </div>
                 <div class="weui-cell__bd">
-                    <p class="username">张大彪</p>
-                    <p class="sid">学号：20170132100{{i}}</p>
+                    <p class="username">{{item.username}}</p>
+                    <p class="sid">学号：{{item.internal_id}}</p>
                 </div>
             </a>
         </div>
@@ -53,7 +53,36 @@
     const vm = new Vue({
         el: "#app",
         data: {
-            total: 10
+            total: 10,
+            student_list: null
+        },
+        created() {
+            Indicator.open({
+                text: "获取数据中...",
+                spinnerType: 'fading-circle'
+            });
+            axios.defaults.baseURL = back_end_url;
+            axios.defaults.withCredentials = true;
+            axios({
+                method: 'GET',
+                url: "/api/user/students ",
+            }).then((res) => {
+                Indicator.close();
+                let data = res.data;
+                console.log(data);
+                if (data.status === 404) {
+                    MessageBox.alert('失败').then(action => {
+                        window.location.href = "/";
+                    });
+                } else if (data.status === 401) {
+                    window.location.href = "/login";
+                } else {
+                    this.student_list = data.data;
+                    this.student_list.sort(function (a, b) {
+                        return parseInt(a.internal_id) - parseInt(b.internal_id);
+                    })
+                }
+            })
         },
     });
 </script>

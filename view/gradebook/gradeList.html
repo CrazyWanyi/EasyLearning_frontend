@@ -14,7 +14,7 @@
     <script src="/static/script/main.js"></script>
     <title>成绩列表</title>
     <style>
-        .done .mint-cell-wrapper .mint-cell-value span{
+        .done .mint-cell-wrapper .mint-cell-value span {
             color: #4ECA7A;
         }
 
@@ -22,7 +22,7 @@
             display: none;
         }
 
-        .mint-cell-wrapper .mint-cell-value span{
+        .mint-cell-wrapper .mint-cell-value span {
             color: #ca0000;
         }
     </style>
@@ -33,10 +33,10 @@
         <mt-button icon="back" slot="left" onclick="window.location.href = '/'">返回</mt-button>
     </mt-header>
     <div class="main">
-        <mt-cell class="done" title="第一章章末测试题" label="测试时间：2017-02-02 15:00:00" value="10分"></mt-cell>
-        <mt-cell class="done" title="第二章章末测试题" label="测试时间：2017-02-02 16:00:00" value="9分"></mt-cell>
-        <mt-cell class="done" title="第三章章末测试题" label="测试时间：2017-02-02 17:00:00" value="8分"></mt-cell>
-        <mt-cell class="done" title="第四章章末测试题" label="测试时间：2017-02-02 18:00:00" value="10分"></mt-cell>
+        <mt-cell v-for="item in grade_list" class="done" :title="item.exam_name" :label="item.created_at | dateFormat" :value="item.final_score | scoreFormat"></mt-cell>
+<!--        <mt-cell class="done" title="第二章章末测试题" label="测试时间：2017-02-02 16:00:00" value="9分"></mt-cell>-->
+<!--        <mt-cell class="done" title="第三章章末测试题" label="测试时间：2017-02-02 17:00:00" value="8分"></mt-cell>-->
+<!--        <mt-cell class="done" title="第四章章末测试题" label="测试时间：2017-02-02 18:00:00" value="10分"></mt-cell>-->
     </div>
 </div>
 <script>
@@ -46,8 +46,43 @@
     const vm = new Vue({
         el: "#app",
         data: {
-            total: 10
+            total: 10,
+            grade_list: null
         },
+        created() {
+            Indicator.open({
+                text: "获取数据中...",
+                spinnerType: 'fading-circle'
+            });
+            axios.defaults.baseURL = back_end_url;
+            axios.defaults.withCredentials = true;
+            axios({
+                method: 'GET',
+                url: "/api/grades",
+            }).then((res) => {
+                Indicator.close();
+                let data = res.data;
+                console.log(data);
+                if (data.status === 404) {
+                    MessageBox.alert('失败').then(action => {
+                        window.location.href = "/";
+                    });
+                } else if (data.status === 401) {
+                    window.location.href = "/login";
+                } else {
+                    this.grade_list = data.data;
+                }
+            })
+        },
+        filters: {
+            dateFormat: function (dateStr) {
+                let date = new Date(dateStr);
+                return "完成时间：" + date.toLocaleString();
+            },
+            scoreFormat: function (score) {
+                return score + "分"
+            }
+        }
     });
 </script>
 </body>
