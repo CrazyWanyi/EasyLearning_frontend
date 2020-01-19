@@ -19,58 +19,60 @@
 
     </style>
 </head>
-<body>
-<div id="app">
-    <mt-header fixed title="编辑个人信息" style="z-index: 10000;">
-        <mt-button icon="back" slot="left" onclick="window.location.href = '/?front=user'">返回</mt-button>
-    </mt-header>
-    <div class="main">
-        <mt-field label="姓名" placeholder="请输入姓名" v-model="info.name"></mt-field>
-        <mt-field label="学号" placeholder="请输入学号" type="info.internalId" v-model="info.internalId"></mt-field>
-        <mt-field label="学校名称" placeholder="请输入学校名称" type="info.schoolName" v-model="info.schoolName"></mt-field>
-        <mt-radio
-                title="性别"
-                v-model="info.gender"
-                :options="options">
-        </mt-radio>
-        <mt-button class="btn" type="default" @click="submit">提交</mt-button>
-    </div>
-</div>
-<script>
-    const MessageBox = MINT.MessageBox;
-    const Indicator = MINT.Indicator;
-    const Toast = MINT.Toast;
-    const vm = new Vue({
-        el: "#app",
-        data: {
-            info: {
-                name: "蒋万艺",
-                internalId: "未设置",
-                gender: "不设置",
-                schoolName: "未设置",
-            },
-            options: [
-                {
-                    label: '男',
-                    value: '男',
-                },
-                {
-                    label: '女',
-                    value: '女'
-                },
-                {
-                    label: '不设置',
-                    value: '不设置'
-                }
-            ]
-        },
-        methods: {
-            submit() {
 
-            }
-        },
-        watch: {}
-    });
-</script>
+<body>
+    <div id="app">
+        <mt-header fixed title="编辑个人信息" style="z-index: 10000;">
+            <mt-button icon="back" slot="left" onclick="window.location.href = '/?front=user'">返回</mt-button>
+        </mt-header>
+        <div class="main">
+            <mt-field label="姓名" placeholder="请输入姓名" v-model="info.name"></mt-field>
+            <mt-field label="学号" placeholder="请输入学号" type="info.internalId" v-model="info.internalId"></mt-field>
+            <mt-field label="学校名称" placeholder="请输入学校名称" type="info.schoolName" v-model="info.schoolName"></mt-field>
+            <mt-radio title="性别" v-model="info.gender" :options="options">
+            </mt-radio>
+            <mt-button class="btn" type="default" @click="submit">提交</mt-button>
+        </div>
+    </div>
+    <script>
+        const MessageBox = MINT.MessageBox;
+        const Indicator = MINT.Indicator;
+        const Toast = MINT.Toast;
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                info: {
+                    name: "蒋万艺",
+                    internalId: "未设置",
+                    gender: "不设置",
+                    schoolName: "未设置",
+                },
+                options: [{
+                        label: '男',
+                        value: '男',
+                    },
+                    {
+                        label: '女',
+                        value: '女'
+                    },
+                    {
+                        label: '不设置',
+                        value: '不设置'
+                    }
+                ]
+            },
+            methods: {
+                submit() {
+                    Toast({
+                        message: "功能未实现^_^",
+                        position: "bottom",
+                        duration: 1500
+                    });
+                }
+            },
+            watch: {}
+        });
+    </script>
 </body>
+
 </html>

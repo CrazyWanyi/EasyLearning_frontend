@@ -18,183 +18,218 @@
     <script src="/static/script/main.js"></script>
     <title>主页面</title>
     <style>
-        .mint-tabbar > .mint-tab-item.is-selected {
+        .mint-tabbar>.mint-tab-item.is-selected {
             background-color: #eaeaea;
             color: #4ECA7A;
         }
     </style>
 </head>
-<body style="background: #f8f8f8;margin: 0 auto">
-<div id="app">
-    <mt-header fixed :title="selected"></mt-header>
-    <div class="main">
-        <mt-tab-container v-model="selected">
-            <mt-tab-container-item id="首页">
-                <div class="weui-cell course_info">
-                    <div class="weui-cell__hd"
-                         style="position: relative;margin: 10px 20px 10px 20px;text-align: center">
-                        <img src="/static/image/teacher_avatar.png" style="width: 50px;" alt="">
-                        <p class="teacher_name">{{info.teacher_name}}</p>
-                    </div>
-                    <div class="weui-cell__bd" style="position: relative;">
-                        <p class="course_name">{{info.classname}}</p>
-                        <p class="course_introduction">{{info.class_description}}</p>
-                    </div>
-                </div>
-                <div class="weui-grids">
-                    <a href="javascript:window.location.href = '/student_list'" class="weui-grid">
-                        <div class="weui-grid__icon">
-                            <img src="/static/image/icon_tabbar.png" alt="">
-                        </div>
-                        <p class="weui-grid__label">班级学生</p>
-                    </a>
-                    <a href="javascript:window.location.href = '/exam_list'" class="weui-grid">
-                        <div class="weui-grid__icon">
-                            <img src="/static/image/icon_tabbar.png" alt="">
-                        </div>
-                        <p class="weui-grid__label">在线测试</p>
-                    </a>
-                    <a href="javascript:window.location.href = '/broadcast'" class="weui-grid">
-                        <div class="weui-grid__icon">
-                            <img src="/static/image/icon_tabbar.png" alt="">
-                        </div>
-                        <p class="weui-grid__label">留言板</p>
-                    </a>
-                    <a href="javascript:window.location.href = '/gradebook'" class="weui-grid">
-                        <div class="weui-grid__icon">
-                            <img src="/static/image/icon_tabbar.png" alt="">
-                        </div>
-                        <p class="weui-grid__label">成绩册</p>
-                    </a>
-                </div>
-            </mt-tab-container-item>
-            <mt-tab-container-item id="我的">
-                <div class="weui-cells" id="user">
-                    <a class="weui-cell weui-cell_access weui-cell_example"
-                       href="javascript:window.location.href = '/modifyInfo'">
-                        <div class="weui-cell__hd">
-                            <img class="avatar" :src="info.gender === '女' ? '/static/image/avatar_girl.png' : '/static/image/avatar_boy.png'" alt="">
-                        </div>
-                        <div class="weui-cell__bd">
-                            <p class="username">{{info.username}}<span
-                                    :class="['type', info.type == 'student' ? 'student' : 'teacher']">{{info.type == 'student' ? '学生' : '老师'}}</span>
-                            </p>
-                            <p class="email">{{info.email}}</p>
-                        </div>
-                        <div class="weui-cell__ft link">修改个人资料</div>
-                    </a>
-                </div>
-                <div class="weui-cells__title"></div>
-                <div class="weui-cells">
-                    <a class="weui-cell weui-cell_access weui-cell_example" @click="switchClass">
-                        <div class="weui-cell__hd">
-                            <img class="icon" src="/static/image/default.png" alt="">
-                        </div>
-                        <div class="weui-cell__bd">
-                            <p>切换班级</p>
-                        </div>
-                        <div class="weui-cell__ft link">{{info.classname}}</div>
-                    </a>
-                    <a class="weui-cell weui-cell_access weui-cell_example"
-                       href="javascript:window.location.href = '/announcement'">
-                        <div class="weui-cell__hd">
-                            <img class="icon" src="/static/image/default.png" alt="">
-                        </div>
-                        <div class="weui-cell__bd">
-                            <p>系统公告</p>
-                        </div>
-                        <div class="weui-cell__ft link">4条</div>
-                    </a>
-                </div>
-                <div class="weui-cells__title"></div>
-                <div class="weui-cells">
-                    <a class="weui-cell weui-cell_access weui-cell_example" href="javascript:">
-                        <div class="weui-cell__hd">
-                            <img class="icon" src="/static/image/default.png" alt="">
-                        </div>
-                        <div class="weui-cell__bd">
-                            <p>在线客服</p>
-                        </div>
-                        <div class="weui-cell__ft"></div>
-                    </a>
-                    <a class="weui-cell weui-cell_access weui-cell_example" href="javascript:">
-                        <div class="weui-cell__hd">
-                            <img class="icon" src="/static/image/default.png" alt="">
-                        </div>
-                        <div class="weui-cell__bd">
-                            <p>常见问题</p>
-                        </div>
-                        <div class="weui-cell__ft"></div>
-                    </a>
-                </div>
-            </mt-tab-container-item>
-        </mt-tab-container>
-    </div>
-    <mt-tabbar v-model="selected">
-        <mt-tab-item id="首页">
-            <img slot="icon" :src="home_icon" alt="">
-            首页
-        </mt-tab-item>
-        <mt-tab-item id="我的">
-            <img slot="icon" :src="me_icon" alt="">
-            我的
-        </mt-tab-item>
-    </mt-tabbar>
-</div>
-<script>
-    const MessageBox = MINT.MessageBox;
 
-    const vm = new Vue({
-        el: "#app",
-        data: {
-            selected: "我的",
-            home_icon: "/static/image/home.png",
-            me_icon: "/static/image/me_active.png",
-            info: {}
-        },
-        methods: {
-            switchClass: function () {
-                window.location.href = "/switchClass"
-            }
-        },
-        created() {
-            axios.defaults.baseURL = back_end_url;
-            axios.defaults.withCredentials = true;
-            axios({
-                method: 'GET',
-                url: "/api/user/home",
-            }).then((res) => {
-                let data = res.data;
-                console.log(data);
-                if (data.status === 401) {
-                    MessageBox.alert('您未登录，请登录').then(action => {
-                        window.location.href = "/login";
+<body style="background: #f8f8f8;margin: 0 auto">
+    <div id="app">
+        <mt-header fixed :title="selected"></mt-header>
+        <div class="main">
+            <mt-tab-container v-model="selected">
+                <mt-tab-container-item id="首页">
+                    <div class="weui-cell course_info">
+                        <div class="weui-cell__hd"
+                            style="position: relative;margin: 10px 20px 10px 20px;text-align: center">
+                            <img src="/static/image/teacher_avatar.png" style="width: 50px;" alt="">
+                            <p class="teacher_name">{{info.teacher_name}}</p>
+                        </div>
+                        <div class="weui-cell__bd" style="position: relative;">
+                            <p class="course_name">{{info.classname}}</p>
+                            <p class="course_introduction">{{info.class_description}}</p>
+                        </div>
+                    </div>
+                    <div class="weui-grids">
+                        <a href="javascript:window.location.href = '/student_list'" class="weui-grid">
+                            <div class="weui-grid__icon">
+                                <img src="/static/image/list.png" alt="">
+                            </div>
+                            <p class="weui-grid__label">班级学生</p>
+                        </a>
+                        <a href="javascript:window.location.href = '/exam_list'" class="weui-grid">
+                            <div class="weui-grid__icon">
+                                <img src="/static/image/test.png" alt="">
+                            </div>
+                            <p class="weui-grid__label">在线测试</p>
+                        </a>
+                        <a href="javascript:window.location.href = '/broadcast'" class="weui-grid">
+                            <div class="weui-grid__icon">
+                                <img src="/static/image/question.png" alt="">
+                            </div>
+                            <p class="weui-grid__label">留言板</p>
+                        </a>
+                        <a href="javascript:window.location.href = '/gradebook'" class="weui-grid">
+                            <div class="weui-grid__icon">
+                                <img src="/static/image/grade.png" alt="">
+                            </div>
+                            <p class="weui-grid__label">成绩册</p>
+                        </a>
+                    </div>
+                </mt-tab-container-item>
+                <mt-tab-container-item id="我的">
+                    <div class="weui-cells" id="user">
+                        <a class="weui-cell weui-cell_access weui-cell_example"
+                            href="javascript:window.location.href = '/modifyInfo'">
+                            <div class="weui-cell__hd">
+                                <img class="avatar"
+                                    :src="info.gender === '女' ? '/static/image/avatar_girl.png' : '/static/image/avatar_boy.png'"
+                                    alt="">
+                            </div>
+                            <div class="weui-cell__bd">
+                                <p class="username">{{info.username}}<span
+                                        :class="['type', info.type == 'student' ? 'student' : 'teacher']">{{info.type == 'student' ? '学生' : '老师'}}</span>
+                                </p>
+                                <p class="email">{{info.email}}</p>
+                            </div>
+                            <div class="weui-cell__ft link">修改个人资料</div>
+                        </a>
+                    </div>
+                    <div class="weui-cells__title"></div>
+                    <div class="weui-cells">
+                        <a class="weui-cell weui-cell_access weui-cell_example" @click="switchClass">
+                            <div class="weui-cell__hd">
+                                <img class="icon" src="/static/image/switch.png" alt="">
+                            </div>
+                            <div class="weui-cell__bd">
+                                <p>切换班级</p>
+                            </div>
+                            <div class="weui-cell__ft link">{{info.classname}}</div>
+                        </a>
+                        <a class="weui-cell weui-cell_access weui-cell_example"
+                            href="javascript:window.location.href = '/announcement'">
+                            <div class="weui-cell__hd">
+                                <img class="icon" src="/static/image/note.png" alt="">
+                            </div>
+                            <div class="weui-cell__bd">
+                                <p>系统公告</p>
+                            </div>
+                            <div class="weui-cell__ft link">4条</div>
+                        </a>
+                    </div>
+                    <div class="weui-cells__title"></div>
+                    <div class="weui-cells">
+                        <a class="weui-cell weui-cell_access weui-cell_example" href="javascript:" @click="todo">
+                            <div class="weui-cell__hd">
+                                <img class="icon" src="/static/image/service.png" alt="">
+                            </div>
+                            <div class="weui-cell__bd">
+                                <p>在线客服</p>
+                            </div>
+                            <div class="weui-cell__ft"></div>
+                        </a>
+                        <a class="weui-cell weui-cell_access weui-cell_example" href="javascript:" @click="todo">
+                            <div class="weui-cell__hd">
+                                <img class="icon" src="/static/image/i.png" alt="">
+                            </div>
+                            <div class="weui-cell__bd">
+                                <p>常见问题</p>
+                            </div>
+                            <div class="weui-cell__ft"></div>
+                        </a>
+                    </div>
+                    <a @click="logout" class="weui-btn weui-btn_warn" style="margin-top: 30px;">退出登录</a>
+                </mt-tab-container-item>
+            </mt-tab-container>
+        </div>
+        <mt-tabbar v-model="selected">
+            <mt-tab-item id="首页">
+                <img slot="icon" :src="home_icon" alt="">
+                首页
+            </mt-tab-item>
+            <mt-tab-item id="我的">
+                <img slot="icon" :src="me_icon" alt="">
+                我的
+            </mt-tab-item>
+        </mt-tabbar>
+    </div>
+    <script>
+        const MessageBox = MINT.MessageBox;
+        const Toast = MINT.Toast;
+
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                selected: "我的",
+                home_icon: "/static/image/home.png",
+                me_icon: "/static/image/me_active.png",
+                info: {}
+            },
+            methods: {
+                switchClass: function () {
+                    window.location.href = "/switchClass"
+                },
+                logout: function () {
+                    MessageBox.confirm('确定执行此操作?')
+                        .then(action => {
+                            console.log('ok');
+                            axios({
+                                method: 'DELETE',
+                                url: "/api/user/logout",
+                            }).then((res) => {
+                                let data = res.data;
+                                console.log(data);
+                                if (data.status === 401) {
+                                    MessageBox.alert('您未登录，请登录').then(action => {
+                                        window.location.href = "/login";
+                                    });
+                                } else if (data.status === 200) {
+                                    window.location.href = "/login"
+                                }
+                            })
+                        }).catch(error => {
+                            console.log('cancel');
+                        })
+                },
+                todo: function () {
+                    Toast({
+                        message: "功能未实现^_^",
+                        position: "bottom",
+                        duration: 1500
                     });
-                } else if (data.status === 200) {
-                    this.info = data.data
                 }
-            })
-        },
-        beforeMount() {
-            let front = window.location.search.split('&')[0].split('=')[1];
-            if (front === "user") {
-                this.selected = "我的";
-            } else {
-                this.selected = "首页";
-            }
-        },
-        watch: {
-            selected(val) {
-                if (val === "我的") {
-                    this.home_icon = "/static/image/home.png";
-                    this.me_icon = "/static/image/me_active.png";
+            },
+            created() {
+                axios.defaults.baseURL = back_end_url;
+                axios.defaults.withCredentials = true;
+                axios({
+                    method: 'GET',
+                    url: "/api/user/home",
+                }).then((res) => {
+                    let data = res.data;
+                    console.log(data);
+                    if (data.status === 401) {
+                        MessageBox.alert('您未登录，请登录').then(action => {
+                            window.location.href = "/login";
+                        });
+                    } else if (data.status === 200) {
+                        this.info = data.data
+                    }
+                })
+            },
+            beforeMount() {
+                let front = window.location.search.split('&')[0].split('=')[1];
+                if (front === "user") {
+                    this.selected = "我的";
                 } else {
-                    this.home_icon = "/static/image/home_active.png";
-                    this.me_icon = "/static/image/me.png";
+                    this.selected = "首页";
+                }
+            },
+            watch: {
+                selected(val) {
+                    if (val === "我的") {
+                        this.home_icon = "/static/image/home.png";
+                        this.me_icon = "/static/image/me_active.png";
+                    } else {
+                        this.home_icon = "/static/image/home_active.png";
+                        this.me_icon = "/static/image/me.png";
+                    }
                 }
             }
-        }
-    });
-</script>
+        });
+    </script>
 </body>
+
 </html>
